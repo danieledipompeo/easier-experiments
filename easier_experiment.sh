@@ -2,9 +2,10 @@
 
 README_FILE=README.md
 # SUPPORTED CASE STUDIES: train-ticket, simplified-cocome
-CASE_STUDY='train-ticket'
+#CASE_STUDY=`grep -A1 "^\-m$" config.ini | grep -v "^\-m$"`
+CASE_STUDY=simplified-cocome
 #Supported algorithms nsgaii, spea2, pesa2
-ALGORITHM='nsgaii'
+ALGORITHM=`grep -A2 "^\-algo$" config.ini | grep -A1 "Sup" | grep -v "Sup"`
 EXPERIMENT_FOLDER=$CASE_STUDY'/'$ALGORITHM
 EXPERIMENT_NAME=$1
 CONFIG_URL="https://raw.githubusercontent.com/danieledipompeo/easier-experiments/${EXPERIMENT_NAME}/config.ini"
