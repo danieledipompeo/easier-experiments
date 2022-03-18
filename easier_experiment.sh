@@ -2,8 +2,8 @@
 
 README_FILE=README.md
 # SUPPORTED CASE STUDIES: train-ticket, simplified-cocome
-#CASE_STUDY=`grep -A1 "^\-m$" config.ini | grep -v "^\-m$"`
-CASE_STUDY=simplified-cocome
+CASE_STUDY=`echo $(basename $(dirname $(grep -A1 "^\-m$" config.ini | grep -v "^\-m$")))`
+#CASE_STUDY=simplified-cocome
 #Supported algorithms nsgaii, spea2, pesa2
 ALGORITHM=`grep -A2 "^\-algo$" config.ini | grep -A1 "Sup" | grep -v "Sup"`
 EXPERIMENT_NAME=$ALGORITHM'-'$CASE_STUDY
