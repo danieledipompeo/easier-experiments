@@ -5,5 +5,5 @@
    - Case study: simplified-cocome
    - Algorithm: spea2
 
-docker run -d --mount type=tmpfs,destination=/tmp -v /mnt/data/easier/simplified-cocome/spea2:/mnt/easier-output/ https://raw.githubusercontent.com/danieledipompeo/easier-experiments/spea2-simplified-cocome/config.ini
+for i in $(seq 1 ); do docker run -d --mount type=tmpfs,destination=/tmp -v /mnt/data/easier/spea2-simplified-cocome/run${i}:/mnt/easier-output/ https://raw.githubusercontent.com/danieledipompeo/easier-experiments/main/spea2-simplified-cocome/config.ini; done
 
