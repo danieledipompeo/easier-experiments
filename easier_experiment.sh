@@ -26,5 +26,5 @@ git checkout -b $EXPERIMENT_NAME
 git add $README_FILE config.ini
 git commit -m "create ${EXPERIMENT_NAME} branch"
 git push origin $EXPERIMENT_NAME
-git checkout master
+git checkout main
 
