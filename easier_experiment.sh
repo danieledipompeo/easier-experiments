@@ -1,12 +1,14 @@
 #!/bin/bash
 
 README_FILE=README.md
-# SUPPORTED CASE STUDIES: train-ticket, simplified-cocome
 CASE_STUDY=`echo $(basename $(dirname $(grep -A1 "^\-m$" config.ini | grep -v "^\-m$")))`
-#CASE_STUDY=simplified-cocome
-#Supported algorithms nsgaii, spea2, pesa2
 ALGORITHM=`grep -A2 "^\-algo$" config.ini | grep -A1 "Sup" | grep -v "Sup"`
-EXPERIMENT_NAME=$ALGORITHM'-'$CASE_STUDY
+SEARCH_BUDGET=`grep -A2 "^\--search-budget" config.ini | grep -A1 "\#It" | grep -v "\#It"`
+SEARCH_BUDGET_TH=`grep -A2 "^\-sbTimeTh" config.ini | grep -A1 "\#Time" | grep -v "\#Time"`
+EXPERIMENT_NAME=$ALGORITHM-$CASE_STUDY
+if [ -n "$2" ]
+	EXPERIMENT_NAME=$2
+	
 CONFIG_URL="https://raw.githubusercontent.com/danieledipompeo/easier-experiments/main/${EXPERIMENT_NAME}/config.ini"
 
 mkdir $EXPERIMENT_NAME
@@ -20,14 +22,17 @@ cat << EOF > $README_FILE
  - Experiment: 
    - Case study: $CASE_STUDY
    - Algorithm: $ALGORITHM
+   - Search Budget: $SEARCH_BUDGET
+   - Search Budget Threshold: $SEARCH_BUDGET_TH
 
-for i in \$(seq 1 ${1}); do docker run -d --mount type=tmpfs,destination=/tmp -v /mnt/data/easier/${EXPERIMENT_NAME}/run\${i}:/mnt/easier-output/ ${CONFIG_URL}; done
+for i in \$(seq 1 ${1}); do docker run -d --mount type=tmpfs,destination=/tmp -v /mnt/data/easier/${EXPERIMENT_NAME}/run\$i:/mnt/easier-output/ danieledipompeo/easier:v1.0 ${CONFIG_URL}; done
 
 EOF
 
-#git add $README_FILE config.ini
-#git commit -m "create ${EXPERIMENT_NAME} folder"
-#git push 
+git add $README_FILE config.ini
+git commit -m "create ${EXPERIMENT_NAME} folder"
+git push 
 
 cd ..
+git checkout config.ini
 
