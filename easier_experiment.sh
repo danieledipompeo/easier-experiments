@@ -6,9 +6,11 @@ ALGORITHM=`grep -A2 "^\-algo$" config.ini | grep -A1 "Sup" | grep -v "Sup"`
 SEARCH_BUDGET=`grep -A2 "^\--search-budget" config.ini | grep -A1 "\#It" | grep -v "\#It"`
 SEARCH_BUDGET_TH=`grep -A2 "^\-sbTimeTh" config.ini | grep -A1 "\#Time" | grep -v "\#Time"`
 EXPERIMENT_NAME=$ALGORITHM-$CASE_STUDY
+
 if [ -n "$2" ]
 	EXPERIMENT_NAME=$2
-	
+fi
+
 CONFIG_URL="https://raw.githubusercontent.com/danieledipompeo/easier-experiments/main/${EXPERIMENT_NAME}/config.ini"
 
 mkdir $EXPERIMENT_NAME
