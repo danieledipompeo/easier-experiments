@@ -7,7 +7,7 @@ SEARCH_BUDGET=`grep -A2 "^\--search-budget" config.ini | grep -A1 "\#It" | grep 
 SEARCH_BUDGET_TH=`grep -A2 "^\-sbTimeTh" config.ini | grep -A1 "\#Time" | grep -v "\#Time"`
 EXPERIMENT_NAME=$ALGORITHM-$CASE_STUDY
 
-if [ -n "$2" ]
+if [ -n "$2" ]; then
 	EXPERIMENT_NAME=$2
 fi
 
