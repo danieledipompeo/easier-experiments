@@ -27,7 +27,7 @@ cat << EOF > $README_FILE
    - Search Budget: $SEARCH_BUDGET
    - Search Budget Threshold: $SEARCH_BUDGET_TH
 
-for i in \$(seq 1 ${1}); do docker run -d --mount type=tmpfs,destination=/tmp -v /mnt/data/easier/${EXPERIMENT_NAME}/run\$i:/mnt/easier-output/ danieledipompeo/easier:v1.0 ${CONFIG_URL}; done
+for i in \$(seq 1 ${1}); do docker run -d --rm --mount type=tmpfs,destination=/tmp -v /mnt/data/easier/${EXPERIMENT_NAME}/run\$i:/mnt/easier-output/ danieledipompeo/easier:v1.0 ${CONFIG_URL}; done
 
 EOF
 
