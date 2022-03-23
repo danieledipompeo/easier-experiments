@@ -11,8 +11,9 @@ if [ -n "$2" ]; then
 	EXPERIMENT_NAME=$2
 fi
 
-CONFIG_URL="https://raw.githubusercontent.com/danieledipompeo/easier-experiments/main/${EXPERIMENT_NAME}/config.ini"
+CONFIG_URL="https://raw.githubusercontent.com/danieledipompeo/easier-experiment-data/main/${EXPERIMENT_NAME}/config.ini"
 
+cd ../easier-experiment-data
 mkdir $EXPERIMENT_NAME
 cd $EXPERIMENT_NAME
 cp ../config.ini .
@@ -35,6 +36,6 @@ git add $README_FILE config.ini
 git commit -m "create ${EXPERIMENT_NAME} folder"
 git push 
 
-cd ..
-git checkout config.ini
+cd -
+#git checkout config.ini
 
